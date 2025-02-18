@@ -1,0 +1,69 @@
+{% include 'header.html' %}  
+
+Formulario para editar
+{% for usuario in usuarios %}
+<form method="post" action="/update" enctype="multipart/form-data">
+
+    <div class="card">
+        <div class="card-header">
+            Editar miembro
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del miembro</h5>
+            <p class="card-text">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input id="name" value="{{usuario[1]}}" class="form-control" type="text" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Apellido:</label>
+                    <input id="lastname" value="{{usuario[6]}}" class="form-control" type="text" name="lastname">
+                </div>
+
+                <div class="form-group">
+                    <label for="mail">Correo:</label>
+                    <input id="mail" value="{{usuario[2]}}" class="form-control" type="text" name="mail">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input id="telefono" value="{{usuario[7]}}" class="form-control" type="text" name="telefono">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_inicio">Fecha de inicio:</label>
+                    <input id="fecha_inicio" value="{{usuario[4]}}" class="form-control" type="date" name="fecha_inicio">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_fin">Fecha de fin:</label>
+                    <input id="fecha_fin" value="{{usuario[5]}}" class="form-control" type="date" name="fecha_fin">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_renovacion">Fecha de renovación:</label>
+                    <input id="fecha_renovacion" value="{{usuario[8]}}" class="form-control" type="date" name="fecha_renovacion">
+                </div>
+
+                <div class="form-group">
+                    <label for="picture">Foto:</label>
+                    <img class="img-thumbnail" width="100" src="{{ url_for('uploads', picturename=usuario[3]) }}" alt="">
+                    <input id="picture" class="form-control" type="file" name="picture">
+                </div>
+
+                <input type="hidden" value="{{usuario[0]}}" name="ID" id="ID">
+                
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Modificar"> 
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </div>
+                
+            </p>
+        </div>
+    </div>
+
+</form>
+{% endfor %}
+
+{% include 'footer.html' %}

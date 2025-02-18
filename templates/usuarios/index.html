@@ -1,0 +1,52 @@
+{% include 'header.html' %}  
+<br>
+<a href="{{url_for('create')}}" class="btn btn-success">
+    Crear nueva membresía
+</a>
+<br>
+<br>
+
+<table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>ID</th>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Fecha de Renovación</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{usuario[0]}}</td>
+
+            <td>
+                <img class="img-thumbnail" width="100" src="uploads/{{usuario[3]}}" alt="">
+            </td>
+
+            <td>{{usuario[1]}}</td> <!-- Nombre -->
+            <td>{{usuario[2]}}</td> <!-- Apellido -->
+            <td>{{usuario[8]}}</td> <!-- Correo -->
+            <td>{{usuario[7]}}</td> <!-- Teléfono -->
+            <td>{{usuario[4]}}</td> <!-- Fecha de Inicio -->
+            <td>{{usuario[5]}}</td> <!-- Fecha de Fin -->
+            <td>{{usuario[6]}}</td> <!-- Fecha de Renovación -->
+
+                <td><a class="btn btn-warning" href="/edit/{{usuario[0]}}">Editar</a></td>
+                <td><a onclick="return confirm('Estas borrando una membresía de forma permanente, ¿Seguro que deseas continuar con esta acción? Esta acción no se puede deshacer.')" class="btn btn-danger" href="/destroy/{{usuario[0]}}">Eliminar</a></td> 
+                <td><a class="btn btn-info" href="/generate_qr/{{usuario[0]}}">Generar QR</a></td> <!-- Botón para generar QR -->
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'footer.html' %}

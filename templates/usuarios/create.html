@@ -1,0 +1,73 @@
+{% include 'header.html' %}
+
+{% with messages=get_flashed_messages() %}
+{% if messages %}
+    <div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}    
+    </div>
+{% endif %}
+{% endwith %}
+
+<br>
+<br>
+<form method="post" action="/store" enctype="multipart/form-data">
+
+    <div class="card">
+        <div class="card-header">
+            Registro de membresías
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del miembro</h5>
+            <p class="card-text">
+                <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input id="name" class="form-control" type="text" name="name">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Apellido:</label>
+                    <input id="lastname" class="form-control" type="text" name="lastname">
+                </div>
+
+                <div class="form-group">
+                    <label for="mail">Correo:</label>
+                    <input id="mail" class="form-control" type="email" name="mail">
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono:</label>
+                    <input id="telefono" class="form-control" type="text" name="telefono">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_inicio">Fecha de inicio:</label>
+                    <input id="fecha_inicio" class="form-control" type="date" name="fecha_inicio">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_fin">Fecha de fin:</label>
+                    <input id="fecha_fin" class="form-control" type="date" name="fecha_fin">
+                </div>
+
+                <div class="form-group">
+                    <label for="fecha_renovacion">Fecha de renovación:</label>
+                    <input id="fecha_renovacion" class="form-control" type="date" name="fecha_renovacion">
+                </div>
+
+                <div class="form-group">
+                    <label for="picture">Foto:</label>
+                    <input id="picture" class="form-control" type="file" name="picture">
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Agregar"> 
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+                </div>
+            </p>
+        </div>
+    </div>
+</form>
+
+{% include 'footer.html' %}
